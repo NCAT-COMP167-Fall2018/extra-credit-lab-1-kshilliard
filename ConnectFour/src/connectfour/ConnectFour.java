@@ -24,6 +24,7 @@ public class ConnectFour {
     public static void main(String[] args) {
         gameBoard = createBoard('b');
         printBoard();
+        playGame(gameBoard);
     }
     
     private static char[][] createBoard(char startingCharacter) {
@@ -47,10 +48,29 @@ public class ConnectFour {
     }
     
     private static void takeTurn(char currentPlayer) {
-        
+        Random rand = new Random();
+        int randNumber = rand.nextInt(7);
+        int place = 5;
+        while (gameBoard[randNumber][place] != 'b') {
+            place = place - 1;
+        }
+        gameBoard[randNumber][place] = currentPlayer;
     }
     
-    private static void playGame(char[][] gameBoard) {
-        
+    private static char playGame(char[][] gameBoard) {
+        char result = 't';
+        int i = 0;
+        char turn;
+        while (i < 10) {
+            turn = 'r';
+            takeTurn(turn);
+            printBoard();
+            System.out.println(" ");
+            System.out.println(" ");
+            turn = 'y';
+            takeTurn(turn);
+            printBoard();
+        }
+        return result;
     }
 }
